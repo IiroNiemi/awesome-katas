@@ -6,9 +6,10 @@ let arrayOfInts = [11, 22, 33, 44, 55, 66, 77, 88, 99]
 
 var BinarySearch = function(find, arrayOfInts, left, right) {
 	if(right >= 1){
-		let mid = left (right - left) / 2
+		let eval = right - left;
+		let mid = eval / 2;
 
-		if(arrayOfInts[mid] == x){
+		if(arrayOfInts[mid] == find){
 			return mid;
 		}
 
