@@ -1,24 +1,23 @@
 let fs = require("fs");
-let allWords = fs.readFileSync("./american-english-copy.txt").toString().split("\n")
-const wordArray = new Uint16Array(10);
-
 var crypto = require('crypto');
-let hash = crypto.createHash("md5").update("A").digest("hex");
+let allWords = fs.readFileSync("./american-english-copy.txt").toString().split("\n")
+
+const unSafeBuf = Buffer.allocUnsafe(allWords.length)
+const allocBuf = Buffer.alloc(64, "0")
+const fromBuf = Buffer.from("Hello world")
+
+let pointer = 0;
+
+allWords.forEach(word => {
+  let hash = crypto.createHash("md5").update(word).digest("hex");
+  console.log(hash)
+  allocBuf.write(hash, pointer)
+  pointer += hash.length;
+});
 
 
-// https://nodejs.org/dist/latest-v6.x/docs/api/buffer.html#buffer_buf_tostring_encoding_start_end
-const buf1 = Buffer.allocUnsafe()
-let A = "A";
+console.log(allocBuf.toString())
 
-console.log(A.toString("ascii"))
-
-/*
-for (let i = 0; i < allWords.length; i++) {
-    const word = allWords[i];
-    wordArray[i] = crypto.createHash("md5").update(word).digest("hex");
-    
-}
-*/
 
 
 
