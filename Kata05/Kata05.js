@@ -48,7 +48,11 @@ function isHashInBuffer(answer){
 }
 
 function getHashesFromBuffer(){
-	console.log(allocBuf.toString("utf8", 0, 32));
+
+	for (let i = 0; i <= allocBuf.length; i += 32) {
+		console.log(allocBuf.toString("utf8", i, i + 32));
+		
+	}
 }
 
 function createMd5Hash(string){
